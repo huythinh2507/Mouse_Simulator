@@ -27,7 +27,16 @@ namespace Mouse_Simulator
             Assert.AreEqual("Tom", mouseName);
         }
 
-     
+        [TestMethod]
+        public void Move_Mouse()
+        {
+            var mouse = new MouseService().CreateMouse();
+            var newPosition = new MouseService().MoveMouse(mouse, 1, 4);
+
+            // Assert the X and Y coordinates separately
+            Assert.AreEqual(1, newPosition.X);
+            Assert.AreEqual(4, newPosition.Y);
+        }
       
 
         [TestMethod]
@@ -104,17 +113,7 @@ namespace Mouse_Simulator
             Assert.AreEqual(0, initialX);
             Assert.AreEqual(0, initialY);
         }
-
-        [TestMethod]
-        public void Move_Mouse()
-        {
-            var mouse = new MouseService().CreateMouse();
-            var newPosition = new MouseService().MoveMouse(mouse, 1, 4);
-
-            // Assert the X and Y coordinates separately
-            Assert.AreEqual(1, newPosition.X);
-            Assert.AreEqual(4, newPosition.Y);
-        }
+      
 
         [TestMethod]
         public void Pressing_Button()
@@ -159,7 +158,6 @@ namespace Mouse_Simulator
             // Assert
             Assert.AreEqual("RolledDown", scrolledUp.State);
         }
-
     }
 
 }

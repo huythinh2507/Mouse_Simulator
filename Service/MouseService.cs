@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Mouse_Simulator.Service
 {
@@ -12,6 +16,7 @@ namespace Mouse_Simulator.Service
         {
             var mouse = new Mouse()
             {
+
                 Name = new Name()
                 {
                     Mouse_name = "Tom"
@@ -42,18 +47,18 @@ namespace Mouse_Simulator.Service
                         {
                             Width = "2",
                             Height = "5"
-                        },
+                    },
                         Type = "right",
                         State = "IsNotPressed"
 
                     },
-                       new Button()
+                    new Button()
                     {
-                        Shape = new Shape()
-                        {
-                            Width = "2",
-                            Height = "5"
-                        },
+                       Shape = new Shape()
+                       {
+                           Width = "2",
+                           Height = "5"
+                       },
                         Type = "forward"
                     },
                           new Button()
@@ -77,27 +82,27 @@ namespace Mouse_Simulator.Service
                 },
 
                 Scrolls = new List<Scroll>()
-            {
-                new Scroll()
                 {
-                    Shape = new Shape(),
+                    new Scroll()
+                    {
+                        Shape = new Shape(),
                     Type = "up",
                     State = "still"
-                },
-
-                new Scroll()
-                {
-                    Shape = new Shape(),
+                    },
+                    
+                    new Scroll()
+                    {
+                        Shape = new Shape(),
                     Type = "down",
                     State = "still"
-                }
-            },
+                    }
+                },
 
-                Position = new Position()
-                {
-                    X = 0,
-                    Y = 0
-                }
+                    Position = new Position()
+                    {
+                        X = 0,
+                        Y = 0
+                    }
             };
             return mouse;
         }
