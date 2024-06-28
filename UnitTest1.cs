@@ -172,11 +172,13 @@ namespace Mouse_Simulator
         public void VerifyInitialState_AllButtons_NotPressed()
         {
             var mouse = new MouseService().CreateMouse();
+
             foreach (var button in mouse.Buttons)
             {
-                Assert.AreEqual("IsNotPressed", button.State);
+                Assert.AreEqual("Still", button.State);
             }
         }
+
 
     }
 

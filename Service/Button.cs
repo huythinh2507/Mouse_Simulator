@@ -8,14 +8,6 @@ namespace Mouse_Simulator.Service
         public string Type { get; internal set; }
         public string State { get; internal set; }
 
-        internal void Press()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Release()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

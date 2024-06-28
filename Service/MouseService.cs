@@ -39,7 +39,7 @@ namespace Mouse_Simulator.Service
                             Height = "5"
                         },
                         Type = "left",
-                        State = "IsNotPressed"
+                        State = "Still"
                     },
 
                     new Button()
@@ -48,11 +48,11 @@ namespace Mouse_Simulator.Service
                         {
                             Width = "2",
                             Height = "5"
-                    },
+                        },
                         Type = "right",
-                        State = "IsNotPressed"
+                        State = "Still"
+                    }, 
 
-                    },
                     new Button()
                     {
                        Shape = new Shape()
@@ -60,7 +60,8 @@ namespace Mouse_Simulator.Service
                            Width = "2",
                            Height = "5"
                        },
-                        Type = "forward"
+                        Type = "forward",
+                        State = "Still"
                     },
                           new Button()
                     {
@@ -69,16 +70,18 @@ namespace Mouse_Simulator.Service
                             Width = "2",
                             Height = "5"
                         },
-                        Type = "backward"
-                          },
+                        Type = "backward",
+                        State = "Still"
+                     },
                           new Button()
-                            {
+                     {
                         Shape = new Shape()
                         {
                             Width = "2",
                             Height = "5"
                         },
-                        Type = "middle"
+                        Type = "middle",
+                        State = "Still"
                     }
                 },
 
@@ -88,14 +91,14 @@ namespace Mouse_Simulator.Service
                     {
                         Shape = new Shape(),
                     Type = "up",
-                    State = "still"
+                    State = "Still"
                     },
                     
                     new Scroll()
                     {
                         Shape = new Shape(),
                     Type = "down",
-                    State = "still"
+                    State = "Still"
                     }
                 },
 
