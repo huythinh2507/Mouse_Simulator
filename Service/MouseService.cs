@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -108,14 +109,9 @@ namespace Mouse_Simulator.Service
         }
         public Position MoveMouse(Mouse mouse, int x, int y)
         {
-            if (x < 0 || y < 0)
-            {
-                throw new ArgumentException("Coordinates must be non-negative.");
-            }
-
             // Calculate the new position
-            var newX = mouse.Position.X + x;
-            var newY = mouse.Position.Y + y;
+            var newX = mouse.Position.X + Math.Max(0, x);
+            var newY = mouse.Position.Y + Math.Max(0, y);
 
             var newPosition = new Position { X = newX, Y = newY };
 
@@ -124,6 +120,7 @@ namespace Mouse_Simulator.Service
 
             return newPosition;
         }
+
         public Button PressButton(Button button)
         {
             // Update the button state (you can modify the existing button or return a new one)
@@ -142,6 +139,11 @@ namespace Mouse_Simulator.Service
             scroll.State = "RolledDown";
             return scroll;
         }
+    
+
+        
+
+
     }
 }
 

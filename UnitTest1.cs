@@ -72,8 +72,8 @@ namespace Mouse_Simulator
             var mouse = new MouseService().CreateMouse();
 
             // Act
-            var leftButton = mouse.Buttons.FirstOrDefault(b => b.Type == "left");
-            var rightButton = mouse.Buttons.FirstOrDefault(b => b.Type == "right");
+            var leftButton = mouse.Buttons.Find(b => b.Type == "left");
+            var rightButton = mouse.Buttons.Find(b => b.Type == "right");
 
             // Assert
             Assert.IsNotNull(leftButton);
@@ -85,14 +85,14 @@ namespace Mouse_Simulator
         }
 
         [TestMethod]
-        public void Test_Scroll()
+        public void Test_Scroll()   
         {
             // Arrange
             var mouse = new MouseService().CreateMouse();
 
             // Act
-            var upScroll = mouse.Scrolls.FirstOrDefault(s => s.Type == "up");
-            var downScroll = mouse.Scrolls.FirstOrDefault(s => s.Type == "down");
+            var upScroll = mouse.Scrolls.Find(s => s.Type == "up");
+            var downScroll = mouse.Scrolls.Find(s => s.Type == "down");
 
             // Assert
             Assert.IsNotNull(upScroll);
@@ -120,8 +120,8 @@ namespace Mouse_Simulator
         {
             // Arrange
             var mouse = new MouseService().CreateMouse();
-            var leftButton = mouse.Buttons.FirstOrDefault(b => b.Type == "left");
-            var rightButton = mouse.Buttons.FirstOrDefault(b => b.Type == "right");
+            var leftButton = mouse.Buttons.Find(b => b.Type == "left");
+            var rightButton = mouse.Buttons.Find(b => b.Type == "right");
             // Act
             var pressedleftButton = new MouseService().PressButton(leftButton);
             var pressedrightButton = new MouseService().PressButton(rightButton);
@@ -135,7 +135,7 @@ namespace Mouse_Simulator
         {
             // Arrange
             var mouse = new MouseService().CreateMouse();
-            var Scroll = mouse.Scrolls.FirstOrDefault(s => s.Type == "up");
+            var Scroll = mouse.Scrolls.Find(s => s.Type == "up");
 
             // Act
             var scrolledUp = new MouseService().ScrollUp(Scroll);
@@ -150,7 +150,7 @@ namespace Mouse_Simulator
         {
             // Arrange
             var mouse = new MouseService().CreateMouse();
-            var Scroll = mouse.Scrolls.FirstOrDefault(s => s.Type == "down");
+            var Scroll = mouse.Scrolls.Find(s => s.Type == "down");
 
             // Act
             var scrolledUp = new MouseService().ScrollDown(Scroll);
@@ -158,6 +158,26 @@ namespace Mouse_Simulator
             // Assert
             Assert.AreEqual("RolledDown", scrolledUp.State);
         }
+
+        [TestMethod]
+        public void InvalidCoordinates_RemainAtInitialPosition()
+        {
+            var mouse = new MouseService().CreateMouse();
+            new MouseService().MoveMouse(mouse, -11, -4);
+            Assert.AreEqual(0, mouse.Position.X);
+            Assert.AreEqual(0, mouse.Position.Y);
+        }
+
+        [TestMethod]
+        public void VerifyInitialState_AllButtons_NotPressed()
+        {
+            var mouse = new MouseService().CreateMouse();
+            foreach (var button in mouse.Buttons)
+            {
+                Assert.AreEqual("IsNotPressed", button.State);
+            }
+        }
+
     }
 
 }
