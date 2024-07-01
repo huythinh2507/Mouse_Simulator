@@ -15,101 +15,73 @@ namespace Mouse_Simulator.Service
         }
         public Mouse CreateMouse()
         {
-            var mouse = new Mouse()
-            {
+            var mouse = new Mouse();
 
-                Name = new Name()
-                {
-                    Mouse_name = "Tom"
-                },
+            // Set mouse name
+            mouse.Name = CreateMouseName("Tom");
 
-                Light = new Light()
-                {
-                    Brightness = "50",
-                    Color = "Red"
-                },
+            // Add buttons
+            mouse.Buttons = CreateButtons();
 
-                Buttons = new List<Button>()
-                {
-                    new Button()
-                    {
-                        Shape = new Shape()
-                        {
-                            Width = "2",
-                            Height = "5"
-                        },
-                        Type = "left",
-                        State = "Still"
-                    },
+            // Set light properties
+            mouse.Light = CreateLight("Red", "50");
 
-                    new Button()
-                    {
-                        Shape = new Shape()
-                        {
-                            Width = "2",
-                            Height = "5"
-                        },
-                        Type = "right",
-                        State = "Still"
-                    }, 
+            // Initialize scroll properties (assuming empty shapes for now)
+            mouse.Scrolls = new List<Scroll>
+    {
+        CreateScroll("up", "Still"),
+        CreateScroll("down", "Still")
+    };
 
-                    new Button()
-                    {
-                       Shape = new Shape()
-                       {
-                           Width = "2",
-                           Height = "5"
-                       },
-                        Type = "forward",
-                        State = "Still"
-                    },
-                          new Button()
-                    {
-                        Shape = new Shape()
-                        {
-                            Width = "2",
-                            Height = "5"
-                        },
-                        Type = "backward",
-                        State = "Still"
-                     },
-                          new Button()
-                     {
-                        Shape = new Shape()
-                        {
-                            Width = "2",
-                            Height = "5"
-                        },
-                        Type = "middle",
-                        State = "Still"
-                    }
-                },
+            // Set initial position
+            mouse.Position = new Position { X = 0, Y = 0 };
 
-                Scrolls = new List<Scroll>()
-                {
-                    new Scroll()
-                    {
-                        Shape = new Shape(),
-                    Type = "up",
-                    State = "Still"
-                    },
-                    
-                    new Scroll()
-                    {
-                        Shape = new Shape(),
-                    Type = "down",
-                    State = "Still"
-                    }
-                },
-
-                    Position = new Position()
-                    {
-                        X = 0,
-                        Y = 0
-                    }
-            };
             return mouse;
         }
+
+        // Helper functions
+        private Name CreateMouseName(string name)
+        {
+            return new Name { Mouse_name = name };
+        }
+
+        private List<Button> CreateButtons()
+        {
+            return new List<Button>
+    {
+        CreateButton("left", "Still"),
+        CreateButton("right", "Still"),
+        CreateButton("forward", "Still"),
+        CreateButton("backward", "Still"),
+        CreateButton("middle", "Still")
+    };
+        }
+
+        private Button CreateButton(string type, string state)
+        {
+            return new Button
+            {
+                Shape = new Shape { Width = "2", Height = "5" },
+                Type = type,
+                State = state
+            };
+        }
+
+        private Light CreateLight(string color, string brightness)
+        {
+            return new Light { Color = color, Brightness = brightness };
+        }
+
+        private Scroll CreateScroll(string type, string state)
+        {
+            return new Scroll
+            {
+                Shape = new Shape(), // Assuming empty shape for now
+                Type = type,
+                State = state
+            };
+        }
+
         public Position MoveMouse(Mouse mouse, int x, int y)
         {
             // Calculate the new position
