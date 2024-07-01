@@ -10,167 +10,102 @@ namespace Mouse_Simulator.Service
 {
     public class MouseService
     {
+        private readonly string _defaultColor = "red";
+        private readonly string _defaultState = "Still";
+        private readonly int _defaultBrightness = 50;
+
         public MouseService()
         {
         }
-        public Mouse CreateMouse()
+        public Mouse CreateMouse(string name, string color)
         {
-            var mouse = new Mouse();
+            var mouse = new Mouse
+            {
+                // Set mouse name
+                Name = CreateMouseName(name),
 
-            // Set mouse name
-            mouse.Name = CreateMouseName("Tom");
+                // Add buttons
+                Buttons = CreateButtons(),
 
-            // Add buttons
-            mouse.Buttons = CreateButtons();
+                // Set light properties
+                Light = CreateLight(color ?? _defaultColor, _defaultBrightness),
 
-            // Set light properties
-            mouse.Light = CreateLight("Red", "50");
-
-            // Initialize scroll properties (assuming empty shapes for now)
-            mouse.Scrolls = new List<Scroll>
-    {
-        CreateScroll("up", "Still"),
-        CreateScroll("down", "Still")
-    };
-
-            // Set initial position
-            mouse.Position = new Position { X = 0, Y = 0 };
-
+                // Initialize scroll properties (assuming empty shapes for now)
+                Scroll = CreateScroll(),
+                
+                // Set initial position
+                Position = new Position { X = 0, Y = 0 }
+            };
             return mouse;
         }
+
+       
 
         // Helper functions
         private Name CreateMouseName(string name)
         {
-            return new Name { Mouse_name = name };
+            return new Name 
+            { 
+                Mouse_name = name 
+            };
         }
 
         private List<Button> CreateButtons()
         {
             return new List<Button>
-    {
-        CreateButton("left", "Still"),
-        CreateButton("right", "Still"),
-        CreateButton("forward", "Still"),
-        CreateButton("backward", "Still"),
-        CreateButton("middle", "Still")
-    };
+            {
+                CreateButton("left", _defaultState),
+                CreateButton("right", _defaultState),
+                CreateButton("forward", _defaultState),
+                CreateButton("backward", _defaultState),
+                CreateButton("middle", _defaultState)
+            };
         }
 
         private Button CreateButton(string type, string state)
         {
             return new Button
             {
-                Shape = new Shape { Width = "2", Height = "5" },
+                Shape = new Shape 
+                { 
+                    Width = 2, 
+                    Height = 5 
+                },
                 Type = type,
                 State = state
             };
         }
 
-        private Light CreateLight(string color, string brightness)
+        private Light CreateLight(string color, int brightness)
         {
-            return new Light { Color = color, Brightness = brightness };
+            return new Light 
+            { 
+                Color = color, 
+                Brightness = brightness 
+            };
         }
 
-        private Scroll CreateScroll(string type, string state)
+        private Scroll CreateScroll()
+        {
+            var scroll = CreateScroll(_defaultState);
+            return scroll;
+        }
+
+        private Scroll CreateScroll(string state)
         {
             return new Scroll
             {
-                Shape = new Shape(), // Assuming empty shape for now
-                Type = type,
-                State = state
+                Shape = new Shape() 
+                { 
+                    Width = 2, 
+                    Height = 5
+                },
+                State = state,
+                Position = new Position() 
+                { 
+                    X = 0 
+                }
             };
         }
-
-        public Position MoveMouse(Mouse mouse, int x, int y)
-        {
-            // Calculate the new position
-            var newX = mouse.Position.X + Math.Max(0, x);
-            var newY = mouse.Position.Y + Math.Max(0, y);
-
-            var newPosition = new Position { X = newX, Y = newY };
-
-            // Update the mouse position
-            mouse.Position = newPosition;
-
-            return newPosition;
-        }
-
-        public Button PressButton(Button button)
-        {
-            // Update the button state (you can modify the existing button or return a new one)
-            button.State = "IsPressed";
-            return button;
-        }
-        public Scroll ScrollUp(Scroll scroll)
-        {
-            // Update the button state (you can modify the existing button or return a new one)
-            scroll.State = "RolledUp";
-            return scroll;
-        }
-        public Scroll ScrollDown(Scroll scroll)
-        {
-            // Update the button state (you can modify the existing button or return a new one)
-            scroll.State = "RolledDown";
-            return scroll;
-        }
-    
-
-        
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
