@@ -98,19 +98,16 @@ namespace Mouse_Simulator.Service
 
         public Button PressButton(Button button)
         {
-            // Update the button state (you can modify the existing button or return a new one)
             button.State = "IsPressed";
             return button;
         }
         public Scroll ScrollUp(Scroll scroll)
         {
-            // Update the button state (you can modify the existing button or return a new one)
             scroll.State = "RolledUp";
             return scroll;
         }
         public Scroll ScrollDown(Scroll scroll)
         {
-            // Update the button state (you can modify the existing button or return a new one)
             scroll.State = "RolledDown";
             return scroll;
         }
