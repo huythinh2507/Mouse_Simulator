@@ -28,10 +28,10 @@ namespace Mouse_Simulator.Service
 
             // Initialize scroll properties (assuming empty shapes for now)
             mouse.Scrolls = new List<Scroll>
-    {
-        CreateScroll("up", "Still"),
-        CreateScroll("down", "Still")
-    };
+            {
+                CreateScroll("up", "Still"),
+                CreateScroll("down", "Still")
+            };
 
             // Set initial position
             mouse.Position = new Position { X = 0, Y = 0 };
@@ -48,13 +48,13 @@ namespace Mouse_Simulator.Service
         private List<Button> CreateButtons()
         {
             return new List<Button>
-    {
-        CreateButton("left", "Still"),
-        CreateButton("right", "Still"),
-        CreateButton("forward", "Still"),
-        CreateButton("backward", "Still"),
-        CreateButton("middle", "Still")
-    };
+        {
+            CreateButton("left", "Still"),
+            CreateButton("right", "Still"),
+            CreateButton("forward", "Still"),
+            CreateButton("backward", "Still"),
+            CreateButton("middle", "Still")
+        };
         }
 
         private Button CreateButton(string type, string state)
