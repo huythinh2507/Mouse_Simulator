@@ -183,7 +183,3 @@ namespace Mouse_Simulator
     }
 
 }
-
-
-
-
