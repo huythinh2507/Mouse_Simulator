@@ -104,7 +104,7 @@ namespace Mouse_Simulator
         }
 
         [TestMethod]
-        public void Test_Ini_Position()
+        public void Test_Mouse_Ini_Position()
         {
             // Arrange
             var mouse = Create_Mouse_Named_Tom();
