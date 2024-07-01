@@ -31,15 +31,30 @@ namespace Mouse_Simulator.Service
                 Light = CreateLight(color ?? _defaultColor, _defaultBrightness),
 
                 // Initialize scroll properties (assuming empty shapes for now)
-                Scroll = CreateScroll(),
-                
-                // Set initial position
+                Scroll = CreateScroll(_defaultState),
+
                 Position = new Position { X = 0, Y = 0 }
             };
-            return mouse;
+            
+
+                return mouse;
         }
 
-       
+        private Scroll CreateScroll(string defaultState)
+        {
+            return new Scroll
+            {
+                Shape = new Shape
+                {
+                    Width = 2,
+                    Height = 5
+                },
+                State = defaultState,
+                Position = new Position { X = 0}
+            };
+        }
+
+
 
         // Helper functions
         private Name CreateMouseName(string name)
@@ -54,11 +69,11 @@ namespace Mouse_Simulator.Service
         {
             return new List<Button>
             {
-                CreateButton("left", _defaultState),
-                CreateButton("right", _defaultState),
-                CreateButton("forward", _defaultState),
-                CreateButton("backward", _defaultState),
-                CreateButton("middle", _defaultState)
+                CreateButton("left", "Still"),
+                CreateButton("right", "Still"),
+                CreateButton("forward", "Still"),
+                CreateButton("backward", "Still"),
+                CreateButton("middle", "Still")
             };
         }
 
@@ -85,27 +100,14 @@ namespace Mouse_Simulator.Service
             };
         }
 
-        private Scroll CreateScroll()
-        {
-            var scroll = CreateScroll(_defaultState);
-            return scroll;
-        }
+     
 
-        private Scroll CreateScroll(string state)
+        public Button PressButton(Button button)
         {
-            return new Scroll
-            {
-                Shape = new Shape() 
-                { 
-                    Width = 2, 
-                    Height = 5
-                },
-                State = state,
-                Position = new Position() 
-                { 
-                    X = 0 
-                }
-            };
+            // Update the button state (you can modify the existing button or return a new one)
+            button.State = "IsPressed";
+            return button;
         }
+       
     }
 }
