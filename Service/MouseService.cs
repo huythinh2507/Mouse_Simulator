@@ -48,13 +48,13 @@ namespace Mouse_Simulator.Service
         private List<Button> CreateButtons()
         {
             return new List<Button>
-        {
-            CreateButton("left", "Still"),
-            CreateButton("right", "Still"),
-            CreateButton("forward", "Still"),
-            CreateButton("backward", "Still"),
-            CreateButton("middle", "Still")
-        };
+            {
+                CreateButton("left", "Still"),
+                CreateButton("right", "Still"),
+                CreateButton("forward", "Still"),
+                CreateButton("backward", "Still"),
+                CreateButton("middle", "Still")
+            };
         }
 
         private Button CreateButton(string type, string state)
